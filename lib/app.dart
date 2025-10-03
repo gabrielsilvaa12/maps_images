@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:maps_imagens/Pages/home_page.dart';
+import 'package:maps_imagens/screens/place_form.dart';
+import 'package:maps_imagens/screens/places_list_screen.dart';
+import 'package:maps_imagens/utilis/app_rotas.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,8 +12,13 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        visualDensity: VisualDensity
+            .adaptivePlatformDensity, // Deixa a aplicação responsiva.
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: PlacesListScreen(),
+      routes: {
+        AppRotas.placeForm: (ctx) => const PlaceFormScreen(),
+      }, // A declaração de rotas termina aqui
       debugShowCheckedModeBanner: false,
     );
   }
