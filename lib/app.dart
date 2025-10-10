@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:maps_imagens/screens/place_form.dart';
+import 'package:maps_imagens/screens/place_form_screen.dart';
 import 'package:maps_imagens/screens/places_list_screen.dart';
 import 'package:maps_imagens/utilis/app_rotas.dart';
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       ),
       home: PlacesListScreen(),
       routes: {
-        AppRotas.placeForm: (ctx) => const PlaceFormScreen(),
+        AppRotas.placeForm: (ctx) => PlaceFormScreen(),
       }, // A declaração de rotas termina aqui
       debugShowCheckedModeBanner: false,
     );
