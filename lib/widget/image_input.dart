@@ -1,14 +1,15 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart' as syspaths;
 
 // Gerencia a imagem
 class ImageInput extends StatefulWidget {
-  // final Function onselectImage;
+  final Function onselectImage; // quando a imagem for selecionada
 
-  const ImageInput(void Function(File pickedImage) selectImage, {Key? key})
-    : super(key: key);
+  const ImageInput(this.onselectImage, {Key? key})
+    : super(key: key); // construtor da função
 
   @override
   State<ImageInput> createState() => _ImageInputState();
@@ -27,6 +28,15 @@ class _ImageInputState extends State<ImageInput> {
     setState(() {
       _storedImage = File(imageFile.path);
     });
+
+    final appDir = await syspaths
+        .getApplicationCacheDirectory(); // diretório onde iremos salvar a imagem
+    String fileName = path.basename(_storedImage!.path); // nome do arquivo
+    final savedImage = await _storedImage!.copy('${appDir.path}/$fileName,');
+
+    widget.onselectImage(
+      savedImage,
+    ); // chaama a função "callback" que avisa o formulário quando essa imagem for chamada
   }
 
   @override
